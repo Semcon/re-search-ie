@@ -1,6 +1,7 @@
 (function(){
     var DATA_URL = 'https://api.myjson.com/bins/1bv2i';
-    var tipUrl = 'http://semcon.com';
+    var TIP_URL = 'http://semcon.com/re-search-tip';
+
     var shareUrl = 'http://semcon.com/re-search';
     var jsonData;
     var dropdownTerms = [];
