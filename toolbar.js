@@ -187,6 +187,19 @@
         return toolbar;
     }
 
+    function sendTip(){
+        var xhr = new XMLHttpRequest();
+        xhr.open( 'POST', TIP_URL, true );
+        xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+        xhr.onreadystatechange = function() {
+            if ( xhr.readyState === 4 && xhr.status === 200 ) {
+                console.log( 'Tip sent' );
+            }
+        }
+
+        xhr.send( 'term=' + getCurrentTerm() );
+    }
+
     function approveTip(){
         document.querySelector( '.re-search-tip-text' ).classList.add( 're-search-hidden' );
         document.querySelector( '.re-search-approve-tip-button' ).classList.add( 're-search-hidden' );
