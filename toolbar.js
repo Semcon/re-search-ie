@@ -222,7 +222,7 @@
             }
         }
 
-        xhr.send( 'term=' + getCurrentTerm() );
+        xhr.send( 'term=' + encodeURIComponent( getCurrentTerm() ).replace( /%20/g, '+' ) );
     }
 
     function approveTip(){
