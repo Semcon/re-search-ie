@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Class Id="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}" Context="InprocServer32" Description="Re-search for Internet Explorer" ThreadingModel="apartment" Version="1.0" Programmable="yes" />
+</Include>

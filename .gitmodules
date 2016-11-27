@@ -1,0 +1,6 @@
+[submodule "plugin/external/fmt"]
+	path = plugin/external/fmt
+	url = https://github.com/fmtlib/fmt
+[submodule "plugin/external/cpprestsdk/src"]
+	path = plugin/external/cpprestsdk/src
+	url = https://github.com/Microsoft/cpprestsdk

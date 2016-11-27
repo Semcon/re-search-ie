@@ -1,0 +1,25 @@
+// Copyright (c) 2016, Semcon Sweden AB. All rights reserved.
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "ResearchGUIDS.h"
+
+[
+	uuid(GUUID_TYPELIB),
+	version(1.0),
+	helpstring("ReSearchIE library")
+]
+library ReSearchIELib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	[
+		uuid(GUID_PRODUCT),
+		helpstring("Re-search for Internet Explorer")
+	]
+	coclass ReSearchBHO
+	{
+		[default] interface IDispatch;
+	};
+};
+

@@ -1,0 +1,41 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {E82E1EE8-5340-4C5E-BF75-06D0694954DC} = s 'Re-search for Internet Explorer'
+		{
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{A307C1FC-3C84-4EFE-A171-743E217AF5BC}'
+			Version = s '1.0'
+		}
+	}
+}
+HKLM
+{
+  NoRemove SOFTWARE
+  {
+	NoRemove Microsoft
+	 {   
+	  NoRemove Windows
+	  {
+		NoRemove CurrentVersion
+		{
+		  NoRemove Explorer
+		  {
+			NoRemove 'Browser Helper Objects'
+			{
+			  ForceRemove '{E82E1EE8-5340-4C5E-BF75-06D0694954DC}' = s 'Re-search for Internet Explorer'
+			  {
+				val 'NoExplorer' = d '1'
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
+}
