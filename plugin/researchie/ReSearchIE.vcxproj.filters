@@ -17,9 +17,6 @@
       <UniqueIdentifier>{4d6c3537-659d-4ac0-9863-3e6c6f4f3dec}</UniqueIdentifier>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Resource Files\web">
-      <UniqueIdentifier>{5bf38105-b4be-499e-8ca7-ae4812db0585}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -27,9 +24,6 @@
     </ClCompile>
     <ClCompile Include="ReSearchIE.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReSearchIE_i.c">
-      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="ReSearchBHO.cpp">
       <Filter>Source Files</Filter>
@@ -52,6 +46,9 @@
     <ClCompile Include="StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="generated\ReSearchIE_i.c">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -62,9 +59,6 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ReSearchIE_i.h">
-      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="ReSearchBHO.h">
       <Filter>Header Files</Filter>
@@ -93,6 +87,9 @@
     <ClInclude Include="ReSearchVersion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="generated\ReSearchIE_i.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ReSearchIE.rc">
@@ -100,17 +97,17 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ReSearchIE.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="ReSearchBHO.rgs">
+    <None Include="resources\ReSearchBHO.rgs">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Web\toolbar.css">
-      <Filter>Resource Files\web</Filter>
+    <None Include="resources\ReSearchIE.def">
+      <Filter>Source Files</Filter>
     </None>
-    <None Include="Web\toolbar.js">
-      <Filter>Resource Files\web</Filter>
+    <None Include="resources\toolbar.css">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\toolbar.js">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -119,7 +116,7 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="ReSearch.ico">
+    <Image Include="resources\ReSearch.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
