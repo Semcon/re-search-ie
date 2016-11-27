@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <RegistryKey Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects">
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}" Name="NoExplorer" Value="1" Type="integer"/>
+  </RegistryKey>
+  
+  <RegistryKey Root="HKLM" Key="Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy">
+    <RegistryValue Key="{33A852AA-5F21-40F4-9765-96053FE02C97}" Name="Policy" Value="3" Type="integer"/>
+    <RegistryValue Key="{33A852AA-5F21-40F4-9765-96053FE02C97}" Name="AppName" Value="ielowutil.exe" Type="string"/>
+    <RegistryValue Key="{33A852AA-5F21-40F4-9765-96053FE02C97}" Name="AppPath" Value="[ProgramFilesFolder]Internet Explorer" Type="string"/>
+  </RegistryKey>
+  <RegistryKey Root="HKLM" Key="Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy">
+    <RegistryValue Key="{C600FEE5-DD45-4B32-B7FF-32A2526A192A}" Name="Policy" Value="3" Type="integer"/>
+    <RegistryValue Key="{C600FEE5-DD45-4B32-B7FF-32A2526A192A}" Name="AppName" Value="iexplore.exe" Type="string"/>
+    <RegistryValue Key="{C600FEE5-DD45-4B32-B7FF-32A2526A192A}" Name="AppPath" Value="[ProgramFilesFolder]Internet Explorer" Type="string"/>
+  </RegistryKey>
+  <?if $(sys.BUILDARCH)="x64"?>
+	  <RegistryKey Root="HKLM" Key="Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy">
+		<RegistryValue Key="{5DA78A6E-4684-4EAB-A737-9179AE1F6012}" Name="Policy" Value="3" Type="integer"/>
+		<RegistryValue Key="{5DA78A6E-4684-4EAB-A737-9179AE1F6012}" Name="AppName" Value="ielowutil.exe" Type="string"/>
+		<RegistryValue Key="{5DA78A6E-4684-4EAB-A737-9179AE1F6012}" Name="AppPath" Value="[ProgramFiles64Folder]Internet Explorer" Type="string"/>
+	  </RegistryKey>  
+	  <RegistryKey Root="HKLM" Key="Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy">
+		<RegistryValue Key="{721942A8-D7A0-41E1-9662-4D1CAD50DE15}" Name="Policy" Value="3" Type="integer"/>
+		<RegistryValue Key="{721942A8-D7A0-41E1-9662-4D1CAD50DE15}" Name="AppName" Value="iexplore.exe" Type="string"/>
+		<RegistryValue Key="{721942A8-D7A0-41E1-9662-4D1CAD50DE15}" Name="AppPath" Value="[ProgramFiles64Folder]Internet Explorer" Type="string"/>
+	  </RegistryKey>	  
+  <?endif?>
+  
+  <RegistryKey
+      Root="HKLM"
+      Key="Software\Classes\CLSID\{E82E1EE8-5340-4C5E-BF75-06D0694954DC}\Implemented Categories\{59fb2056-d625-48d0-a944-1a85b5ab2640}"
+      ForceCreateOnInstall="yes">
+  </RegistryKey>
+
+  <RegistryKey
+      Root="HKLM"
+      Key="Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy">
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Value="ResearchIE"
+                   Type="string" 
+                   Action="write" />
+  </RegistryKey>
+  <RegistryKey
+    Root="HKLM"
+    Key="Software\Microsoft\Internet Explorer\Extensions">
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Name="CLSID"
+                   Value="{1FBA04EE-3024-11d2-8F1F-0000F87ABD16}"
+                   Type="string"
+                   Action="write" />
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Name="ButtonText"
+                   Value="Re-search"
+                   Type="string"
+                   Action="write" />
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Name="MenuText"
+                   Value="Re-search for Internet Explorer"
+                   Type="string"
+                   Action="write" />                   
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Name="Default Visible"
+                   Value="yes"
+                   Type="string"
+                   Action="write" />
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Name="ClsIDExtension"
+                   Value="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Type="string"
+                   Action="write" />
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Name="Icon"
+                   Value="[INSTALLFOLDER]ReSearchIE32.dll,207"
+                   Type="string"
+                   Action="write" />                   
+    <RegistryValue Key="{E82E1EE8-5340-4C5E-BF75-06D0694954DC}"
+                   Name="HotIcon"
+                   Value="[INSTALLFOLDER]ReSearchIE32.dll,207"
+                   Type="string"
+                   Action="write" />                   
+                   
+  </RegistryKey>
+</Include>

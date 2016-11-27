@@ -22,17 +22,20 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-(function(){
-    var DATA_URL = 'https://raw.githubusercontent.com/Semcon/re-search-config/master/data.json';
+function addResearchToolbar(jsonSource, full_css) {
     var TIP_URL = 'http://semcon.com/re-search-tip/';
-
     var shareUrl = 'http://semcon.com/re-search';
-    var jsonData;
     var dropdownTerms = [];
     var currentEngine;
+    var jsonData = JSON.parse(jsonSource);
 
-    function getSelectList(){
-        var selectList = document.createElement( 'select');
+    function injectCSS(str) {
+        var node = document.createElement( 'style' );
+        node.innerHTML = str;
+        document.body.appendChild(node);
+    }
+    function getSelectList() {
+        var selectList = document.createElement( 'select' );
         selectList.className = 're-search-select';
         selectList.id = "termList";
 
@@ -342,16 +345,8 @@
         body.insertBefore( toolbar, body.children[ 0 ] );
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open( 'GET', DATA_URL, true );
-    xhr.onreadystatechange = function() {
-        if ( xhr.readyState === 4 && xhr.status === 200 ) {
-            jsonData = JSON.parse( xhr.responseText );
-
-            if( getEngine() ){
-                injectToolbar();
-            }
-        }
+    if (getEngine()) {
+        injectCSS(full_css);
+        injectToolbar();
     }
-    xhr.send();
-})();
+}

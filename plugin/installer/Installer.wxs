@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?if $(sys.BUILDARCH)="x86"?>
+	<?define Program_Files="ProgramFilesFolder"?>
+	<?define build_dir="ia32"?>
+<?elseif $(sys.BUILDARCH)="x64"?>
+	<?define Program_Files="ProgramFiles64Folder"?>
+	<?define build_dir="x64"?>
+<?else?>
+	<?error Unsupported value of sys.BUILDARCH=$(sys.BUILDARCH)?>
+<?endif?>
+
+<?define Product_Version="0.5.0.0" ?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+					 Name="Re-search for Internet Explorer" Language="1033"
+					 Version="$(var.Product_Version)" Manufacturer="Semcon"
+					 UpgradeCode="1504dcea-9fbe-44b9-a891-87b064455b41">
+    <Package
+			InstallerVersion="301"
+			Compressed="yes"
+			Description="Re-search for Internet Explorer"
+			Comments="Thank you for installing!"
+			Manufacturer="Semcon"
+			InstallScope="perMachine" InstallPrivileges="elevated" />
+
+    <MajorUpgrade Schedule="afterInstallExecute" AllowDowngrades="yes" />
+    <MediaTemplate EmbedCab="yes"/>
+
+	<Icon Id="ReSearch.ico" SourceFile="..\researchie\resources\ReSearch.ico"/>
+	<Property Id="ARPPRODUCTICON" Value="ReSearch.ico" />
+
+    <Feature Id="ProductFeature" Title="Installer" Level="1" Display="hidden">
+      <ComponentGroupRef Id="Installation_Folders"/>
+      <ComponentGroupRef Id="Files"/>
+    </Feature>
+
+    <ComponentGroup Id="Installation_Folders">
+      <ComponentRef Id="AppData_Folder.component"/>
+      <ComponentRef Id="Install_Folder.component"/>
+    </ComponentGroup>
+    <Property Id="RSIE_APPDATA_FOLDER">
+      <RegistrySearch Id="Registry_Read_RSIE_AppData_Folder"
+        Root="HKCU" Key="SOFTWARE\ReSearchIE"
+        Name="AppDataFolder" Type="raw"/>
+    </Property>
+    <Component Id="AppData_Folder.component" Guid="AFA74B4D-24BF-4589-8FEB-B01A6782B93A" Directory="RSIE_APPDATA_FOLDER">
+      <RegistryValue
+        Root="HKCU" Key="SOFTWARE\ReSearchIE"
+        Name="AppDataFolder" Type="string"
+        Value="[RSIE_APPDATA_FOLDER]"/>
+    </Component>
+
+    <!-- 
+  See http://stackoverflow.com/questions/1882024/wix-will-not-add-hklm-registry-setting-during-windows-7-install 
+  -->
+    <Property Id="INSTALLFOLDER">
+      <RegistrySearch Id="Registry_Read_Install_Folder"
+        Root="HKLM" Key="Software\ReSearchIE"
+        Name="InstallFolder" Type="raw"/>
+    </Property>
+    <Component Id="Install_Folder.component" Guid="61E6F17D-7E41-43DF-8DD0-46C53E1C6BB9" Directory="INSTALLFOLDER">
+      <RegistryKey Root="HKLM" Key="Software\ReSearchIE">
+	    <RegistryValue
+		  Name="InstallFolder" Type="string"
+		  Value="[INSTALLFOLDER]"/>
+      </RegistryKey>
+    </Component>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.Program_Files)">
+        <!--
+          INSTALLFOLDER is within ProgramFilesFolder, which is a protected directory.
+          As a result, this installer requires elevated permissions to operate.
+        -->
+        <Directory Id="INSTALLFOLDER" Name="ReSearchIE" />
+        <Directory Id="APP_DATA_FOLDER">
+          <Directory Id="RSIE_APPDATA_FOLDER" Name="ReSearchIE"></Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    
+   <ComponentGroup Id="Files" Directory="INSTALLFOLDER">
+      <Component Id="ReSearchIE32.dll" Guid="8CABA732-3D0A-4409-845F-767BEE409E3A" Win64="no">
+        <File Id="ReSearchIE32.dll" Name="ReSearchIE32.dll" Source="..\bin\x86\Release\ReSearchIE.dll" KeyPath="yes" Checksum="yes">
+          <?include class_setup.wxi ?>
+        </File>
+        <?include registry_setup.wxi ?>
+      </Component>
+
+      <?if $(sys.BUILDARCH)="x64"?>
+      <Component Id="ReSearchIE64.dll" Guid="C67F7A8F-284F-487D-A822-ED14553F7369" Win64="yes">
+        <File Id="ReSearchIE64.dll" Name="ReSearchIE64.dll" Source="..\Bin\x64\Release\ReSearchIE.dll" KeyPath="yes" Checksum="yes">
+          <?include class_setup.wxi ?>
+        </File>
+        <?include registry_setup.wxi ?>
+      </Component>
+      <?endif?>
+    </ComponentGroup>
+  </Product>
+</Wix>
