@@ -1,6 +1,6 @@
 # Re-Search Internet Explorer Extension
 
-This is the Internet Explorer extension for the [Re-search project](http://semcon.com/re-search).
+This is the Internet Explorer extension for the [Re-search project](http://semcon.com/re-search/).
 
 When doing image search on various search engines we've found that quite many professions will show a stereotypical result regarding the divisions of male and female people present in the images.
 
