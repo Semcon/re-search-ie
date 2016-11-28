@@ -26,7 +26,7 @@
     var DATA_URL = 'https://raw.githubusercontent.com/Semcon/re-search-config/master/data.json';
     var TIP_URL = 'http://semcon.com/re-search-tip/';
 
-    var shareUrl = 'http://semcon.com/re-search';
+    var shareUrl = 'http://semcon.com/re-search/';
     var jsonData;
     var dropdownTerms = [];
     var currentEngine;
